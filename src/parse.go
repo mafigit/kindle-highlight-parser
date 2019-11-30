@@ -207,6 +207,10 @@ func ParseTimestamp(date string) time.Time {
 func ParseHighlight(line string) (Highlight, error) {
 	sublines := splitAndRemove(line, "\n")
 
+	if len(sublines) == 2 {
+		sublines = append(sublines, " ")
+	}
+
 	if len(sublines) == 0 {
 		return Highlight{}, nil
 	}
