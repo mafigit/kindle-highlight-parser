@@ -36,9 +36,9 @@ func SingleEmitMarkdown(w io.Writer, single Single) error {
 }
 
 func AuthorEmitMarkdown(w io.Writer, author string, h NewAuthor) error {
+	fmt.Fprint(w, "## ")
 	fmt.Fprint(w, author)
 	fmt.Fprint(w, "\n")
-	fmt.Fprint(w, strings.Repeat("=", len(author)))
 	fmt.Fprint(w, "\n\n")
 
 	books := make([]string, 0, len(h))
@@ -51,6 +51,7 @@ func AuthorEmitMarkdown(w io.Writer, author string, h NewAuthor) error {
 
 	for _, book := range books {
 		bookTitle := TruncateBookTitle(book)
+		fmt.Fprint(w, "### ")
 		fmt.Fprint(w, bookTitle)
 		fmt.Fprint(w, "\n")
 		fmt.Fprint(w, strings.Repeat("-", len(bookTitle)))

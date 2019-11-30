@@ -215,7 +215,7 @@ func ParseHighlight(line string) (Highlight, error) {
 		return Highlight{}, nil
 	}
 
-	isBookmark := strings.Contains(sublines[1], "Your Bookmark on ")
+	isBookmark := strings.Contains(sublines[1], "Ihre Lesezeichen auf ")
 
 	if isBookmark {
 		return Highlight{}, nil
@@ -261,7 +261,8 @@ func ParseHighlight(line string) (Highlight, error) {
 		timestamp = ParseTimestamp(parts[2])
 	case 2:
 		// There is no page, just a location
-		locationStr := last(strings.Split(trim(parts[1]), " "))
+		locationStr := last(strings.Split(trim(parts[0]), " "))
+
 		locParts := strings.Split(locationStr, "-")
 		locStart := parseInt(locParts[0])
 
